@@ -1,0 +1,63 @@
+/* Reset default styles */
+html,
+body,
+header,
+nav,
+ul,
+li,
+a {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Header styles */
+header {
+    background-color: #845b5b;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+
+.logo-wrap {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.mini-navbar {
+    margin-left: auto;
+}
+
+.mini-navbar ul {
+    display: flex;
+}
+
+.mini-navbar li {
+    margin-left: 10px;
+}
+
+/* Main navigation styles */
+nav ul {
+    display: flex;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+/* Link styles */
+a {
+    color: #ffffff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
