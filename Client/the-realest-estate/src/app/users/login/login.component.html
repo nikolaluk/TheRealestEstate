@@ -3,12 +3,12 @@
     <div class="form">
         <form action="">
             <label for="email">Email</label>
-            <input type="text" name="email">
+            <input #email type="text" name="email">
 
             <label for="password">Password</label>
-            <input type="text" name="password">
+            <input #password type="text" name="password">
 
-            <input class="submit" type="submit" value="Login">
+            <input class="submit"  value="Login" (click)="submitLogin(email,password)">
         </form>
     </div>
 </div>

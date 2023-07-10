@@ -3,15 +3,15 @@
     <div class="form">
         <form action="">
             <label for="email">Email</label>
-            <input type="text" name="email">
+            <input #email type="text" name="email">
 
             <label for="password">Password</label>
-            <input type="text" name="password">
+            <input #password type="text" name="password">
 
-            <label for="repeatePassword">Repeate password</label>
-            <input type="text" name="repeatePassword">
+            <label for="repeatPassword">Repeate password</label>
+            <input #repeatPassword type="text" name="repeatPassword">
 
-            <input class="submit" type="submit" value="Register">
+            <input class="submit" type="submit" value="Register" (click)="submitRegistration(email,password,repeatPassword)">
         </form>
     </div>
 </div>
