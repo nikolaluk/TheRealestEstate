@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const furnitureManager = require('../managers/furnitureManager');
+const estateManager = require('../managers/estateManager');
 
 router.get('/', async (req,res) => {
     try{
-        const furnitures = await furnitureManager.getAll(req.query);
+        const estates = await estateManager.getAll();
 
-        res.json(furnitures);
+        res.json(estates);
     } catch (err) {
         console.log(err);
     }
@@ -14,10 +14,7 @@ router.get('/', async (req,res) => {
 
 router.post('/', async (req,res) => {
     try {
-        await furnitureManager.create({
-            ...req.body,
-            _ownerId: req.user._id,
-        });
+        await estateManager.create(req.body);
         
         res.status(204).end();
     } catch (err) {
@@ -28,19 +25,19 @@ router.post('/', async (req,res) => {
 })
 
 router.get('/:furnitureId', async(req,res) => {
-    const furniture = await furnitureManager.getOne(req.params.furnitureId);
+    const estate = await estateManager.getOne(req.params.furnitureId);
 
-    res.json(furniture);
+    res.json(estate);
 });
 
 router.put('/:furnitureId', async(req,res) => {
-    await furnitureManager.editOne(req.params.furnitureId,req.body);
+    await estateManager.editOne(req.params.furnitureId,req.body);
 
     res.status(204).end();
 });
 
 router.delete('/:furnitureId', async(req,res) => {
-    await furnitureManager.removeOne(req.params.furnitureId);
+    await estateManager.removeOne(req.params.furnitureId);
 
     res.status(204).end();
 });

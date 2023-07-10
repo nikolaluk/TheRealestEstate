@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from './types/User';
+import { Estate } from './types/Estate';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,16 @@ export class ApiService {
         sessionStorage.setItem('email',data.email);
         sessionStorage.setItem('accessToken', data.accessToken)
       });
+  }
+
+  createEstate(estateData:Estate) {
+    const { appUrl } = environment;
+    
+    return this.http.post<any>(`${appUrl}/estates`,estateData);
+  }
+
+  getAllEstatesForSale(){
+    const { appUrl } = environment;
+    return this.http.get<Estate[]>(`${appUrl}/estates`);
   }
 }

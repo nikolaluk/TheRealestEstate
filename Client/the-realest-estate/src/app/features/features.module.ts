@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { BuyComponent } from './buy/buy.component';
 import { RentComponent } from './rent/rent.component';
 import { RouterModule } from '@angular/router';
+import { AddComponent } from './add/add.component';
 
 
 
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     HomeComponent,
     BuyComponent,
-    RentComponent
+    RentComponent,
+    AddComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     BuyComponent,
     RentComponent,
+    AddComponent,
   ]
 })
 export class FeaturesModule { }

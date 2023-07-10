@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
 const userController = require('./controllers/userController');
-const furnitureController = require('./controllers/furnitureController');
+const estateController = require('./controllers/estateController');
 
 router.use('/users', userController);
-router.use('/data/furnitures', furnitureController);
+router.use('/estates', estateController);
 
 module.exports = router;

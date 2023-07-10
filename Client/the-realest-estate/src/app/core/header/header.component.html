@@ -28,7 +28,7 @@
             <li>
                 <a routerLink="/rent">Rent</a>
             </li>
-            <li>
+            <li *ngIf="authService.isLoggedIn">
                 <a routerLink="/add">Add</a>
             </li>
         </ul>

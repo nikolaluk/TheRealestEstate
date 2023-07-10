@@ -1,0 +1,17 @@
+<div>
+    <h1>Add an estate listing</h1>
+    <div class="form">
+        <form action="">
+            <label for="location">Location</label>
+            <input #location type="text" name="location">
+
+            <label for="imageUrl">ImageUrl</label>
+            <input #imageUrl type="text" name="imageUrl">
+
+            <label for="price">Price</label>
+            <input #price type="number" name="price">
+
+            <input class="submit" value="Add" (click)="addEstate(location, imageUrl, price)">
+        </form>
+    </div>
+</div>
