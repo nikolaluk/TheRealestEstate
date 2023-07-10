@@ -15,11 +15,11 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule,
   ],
   exports: [
     HomeComponent,
     BuyComponent,
+    RentComponent,
   ]
 })
 export class FeaturesModule { }
