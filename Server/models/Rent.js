@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const estateSchema = new mongoose.Schema({
+const rentSchema = new mongoose.Schema({
     location: {
         type: String,
         required: true,
@@ -9,12 +9,12 @@ const estateSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    price: {
+    rent: {
         type: Number,
         required: true,
     }
-});
+})
 
-const Estate = mongoose.model('Estate', estateSchema);
+const Rent = mongoose.model('Rent', rentSchema);
 
-module.exports = Estate;
+module.exports = Rent;

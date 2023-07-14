@@ -1,17 +1,47 @@
 <div>
     <h1>Register</h1>
     <div class="form">
-        <form action="">
-            <label for="email">Email</label>
-            <input #email type="text" name="email">
+        <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" formControlName="email">
+                <!-- email error handling -->
+                <div *ngIf="registerForm.get('email')?.touched">
+                    <div *ngIf="registerForm.get('email')?.errors?.['required']">
+                        Email is required!
+                      </div>
+                    <div *ngIf="registerForm.get('email')?.errors?.['email']">
+                        Email is not valid!
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" formControlName="password">
+                <!-- password error handling -->
+                <div *ngIf="registerForm.get('password')?.touched">
+                    <div *ngIf="registerForm.get('password')?.errors?.['required']">
+                        Password is required!
+                      </div>
+                    <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                        Password too short!
+                    </div>
+                </div>
+            </div>
 
-            <label for="password">Password</label>
-            <input #password type="text" name="password">
+            <div class="form-group">
+                <label for="repeatPassword">Repeat password</label>
+                <input type="password" name="repeatPassword" formControlName="repeatPassword">
+                <!-- repeatPassword error handling -->
+                <div *ngIf="registerForm.get('repeatPassword')?.touched">
+                    <div *ngIf="registerForm.hasError('passwordMismatch')">
+                        Passwords do not match!
+                    </div>
+                </div>
+            </div>
 
-            <label for="repeatPassword">Repeate password</label>
-            <input #repeatPassword type="text" name="repeatPassword">
-
-            <input class="submit" value="Register" (click)="submitRegistration(email,password,repeatPassword)">
+            <button>Register</button>
         </form>
     </div>
 </div>

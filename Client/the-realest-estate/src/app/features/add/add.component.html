@@ -1,17 +1,16 @@
-<div>
-    <h1>Add an estate listing</h1>
-    <div class="form">
-        <form action="">
-            <label for="location">Location</label>
-            <input #location type="text" name="location">
+<div class="estate-wrapper">
+    <div class="sell-option">
+        <h4>Sell your estate</h4>
 
-            <label for="imageUrl">ImageUrl</label>
-            <input #imageUrl type="text" name="imageUrl">
+        <a routerLink="/sell">
+            <button>Sell</button>
+        </a>
+    </div>
+    <div class="rent-option">
+        <h4>Rent out your estate</h4>   
 
-            <label for="price">Price</label>
-            <input #price type="number" name="price">
-
-            <input class="submit" value="Add" (click)="addEstate(location, imageUrl, price)">
-        </form>
+        <a routerLink="/rentout">
+            <button>Rent out</button>
+        </a>
     </div>
 </div>

@@ -1,13 +1,21 @@
 form {
     display: flex;
     flex-direction: column;
+    margin-top: 5px;
 }
 
 input {
     width: 20%;
 }
 
-.submit {
+button {
     width: 10%;
-    margin-top: 10px;
+    margin-top: 5px;
 }
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+

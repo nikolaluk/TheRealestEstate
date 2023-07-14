@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';
 import { UsersModule } from './users/users.module';
+import { AddModule } from './add/add.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,6 +19,8 @@ import { UsersModule } from './users/users.module';
     CoreModule,
     FeaturesModule,
     UsersModule,
+    AddModule,
+
     HttpClientModule
   ],
   providers: [],

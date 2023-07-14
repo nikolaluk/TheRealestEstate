@@ -1,1 +1,10 @@
-<p>rent works!</p>
+<div class="catalog">
+    <article *ngFor="let rent of rents">
+        <h2>{{rent.location}}</h2>
+        <img [src]="rent.imageUrl" alt="">
+        <span>Price: {{rent.rent}} $</span>
+        <br>
+        <br>
+        <button>Details</button>
+    </article>
+</div>

@@ -1,0 +1,41 @@
+<div>
+    <h1>Rentout estate</h1>
+    <div class="form">
+        <form [formGroup]="rentOutForm" (ngSubmit)="handleSubmit()">
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" name="location" formControlName="location">
+                <!-- location error handling -->
+                <div *ngIf="rentOutForm.get('location')?.touched">
+                    <div *ngIf="rentOutForm.get('location')?.errors?.['required']">
+                        Location is required!
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="imageUrl">ImageUrl</label>
+                <input type="text" name="imageUrl" formControlName="imageUrl">
+                <!-- imageUrl error handling -->
+                <div *ngIf="rentOutForm.get('imageUrl')?.touched">
+                    <div *ngIf="rentOutForm.get('imageUrl')?.errors?.['required']">
+                        ImageUrl is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="rent">Rent</label>
+                <input type="number" name="rent" formControlName="rent">
+                <!-- price error handling -->
+                <div *ngIf="rentOutForm.get('rent')?.touched">
+                    <div *ngIf="rentOutForm.get('rent')?.errors?.['required']">
+                        Rent is required!
+                    </div>
+                </div>
+            </div>
+
+            <button>Add</button>
+        </form>
+    </div>
+</div>

@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const estateManager = require('../managers/estateManager');
+const rentManager = require('../managers/rentManager');
 
 router.get('/', async (req,res) => {
     try{
-        const estates = await estateManager.getAll();
+        const rents = await rentManager.getAll();
 
-        res.json(estates);
+        res.json(rents);
     } catch (err) {
         console.log(err);
     }
@@ -14,12 +14,12 @@ router.get('/', async (req,res) => {
 
 router.post('/', async (req,res) => {
     try {
-        await estateManager.create(req.body);
-        
+        await rentManager.create(req.body);
+
         res.status(204).end();
     } catch (err) {
         res.status(400).json({
-            message: 'Cannot create estate',
+            message: 'Cannot create rent',
         });
     }
 })

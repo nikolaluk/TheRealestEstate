@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class AuthService {
-  private _isLoggedIn: boolean = sessionStorage["authToken"] ? true : false;
+  private _isLoggedIn: boolean = localStorage["accessToken"] ? true : false;
 
   get isLoggedIn(): boolean {
     return this._isLoggedIn;
