@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ApiService } from 'src/app/api.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,12 +14,16 @@ export class SellComponent {
   constructor(
     private apiService: ApiService, 
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+
+    private router: Router,
   ) {}
 
   sellForm = this.formBuilder.group({
     location: ['', [Validators.required]],
     imageUrl: ['', [Validators.required]],
+    area: ['', [Validators.required]],
+    description: ['',[Validators.required]],
     price: ['', [Validators.required]],
   });
 
@@ -26,9 +31,12 @@ export class SellComponent {
     const estateData = {
       location: this.sellForm.get('location')?.value,
       imageUrl: this.sellForm.get('imageUrl')?.value,
+      description: this.sellForm.get('description')?.value,
+      area: this.sellForm.get('area')?.value,
       price: Number(this.sellForm.get('price')?.value),
     }
 
     this.apiService.createEstate(estateData);
+    this.router.navigate(['buy']);
   }
 }

@@ -25,6 +25,28 @@
             </div>
 
             <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" name="description" formControlName="description">
+                <!-- description error handling -->
+                <div *ngIf="sellForm.get('description')?.touched">
+                    <div *ngIf="sellForm.get('description')?.errors?.['required']">
+                        Description is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="area">Area</label>
+                <input type="number" name="area" formControlName="area">
+                <!-- area error handling -->
+                <div *ngIf="sellForm.get('area')?.touched">
+                    <div *ngIf="sellForm.get('area')?.errors?.['required']">
+                        Area is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="price">Price</label>
                 <input type="number" name="price" formControlName="price">
                 <!-- price error handling -->

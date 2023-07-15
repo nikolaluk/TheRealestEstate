@@ -57,4 +57,14 @@ export class ApiService {
     const { appUrl } = environment;
     return this.http.get<Rent[]>(`${appUrl}/rents`);
   }
+
+  getOneEstate(estateId: string){
+    const { appUrl } = environment;
+    return this.http.get<Estate>(`${appUrl}/estates/${estateId}`);
+  }
+
+  getOneRentout(rentId: string){
+    const { appUrl } = environment;
+    return this.http.get<Rent>(`${appUrl}/rents/${rentId}`);
+  }
 }

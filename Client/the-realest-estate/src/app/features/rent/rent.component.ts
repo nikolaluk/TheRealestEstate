@@ -13,7 +13,7 @@ export class RentComponent implements OnInit{
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.getAllRentouts().subscribe((data) => {
+    this.apiService.getAllRentouts().subscribe((data) => {      
       this.rents = data;
     })
   }

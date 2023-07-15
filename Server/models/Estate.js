@@ -9,6 +9,14 @@ const estateSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+        required: true,
+    },
+    area: {
+        type: Number,
+        required: true,
+    },
     price: {
         type: Number,
         required: true,

@@ -1,5 +1,8 @@
 export interface Estate {
-    location:string,
-    imageUrl:string,
-    price:number,
+    _id: string,
+    location: string,
+    imageUrl: string,
+    area: number,
+    description: string,
+    price: number,
 }

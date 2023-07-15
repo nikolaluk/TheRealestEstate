@@ -1,5 +1,8 @@
 export interface Rent {
-    location:string,
-    imageUrl:string,
-    rent:number,
+    _id: string,
+    location: string,
+    imageUrl: string,
+    area: number,
+    description: string,
+    rent: number,
 }

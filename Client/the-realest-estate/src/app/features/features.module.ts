@@ -6,6 +6,9 @@ import { RentComponent } from './rent/rent.component';
 import { RouterModule } from '@angular/router';
 import { AddComponent } from './add/add.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FeaturesRoutingModule } from './features-routing.module';
+import { BuyDetailsComponent } from './buy-details/buy-details.component';
+import { RentDetailsComponent } from './rent-details/rent-details.component';
 
 
 
@@ -14,18 +17,23 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     BuyComponent,
     RentComponent,
-    AddComponent
+    AddComponent,
+    BuyDetailsComponent,
+    RentDetailsComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
+    FeaturesRoutingModule,
   ],
   exports: [
     HomeComponent,
     BuyComponent,
     RentComponent,
     AddComponent,
+    BuyDetailsComponent,
+    RentDetailsComponent,
   ]
 })
 export class FeaturesModule { }

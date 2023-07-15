@@ -12,6 +12,7 @@ import { AddModule } from './add/add.module';
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
