@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const estateSchema = new mongoose.Schema({
+    type: {
+        type: String,
+        required: true,
+    },
     location: {
         type: String,
         required: true,

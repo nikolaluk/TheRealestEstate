@@ -2,7 +2,7 @@ const Rent = require('../models/Rent');
 
 exports.getAll = async () => Rent.find();
 
-exports.getOne = (estateId) => Rent.findById(estateId);
+exports.getOne = (rentId) => Rent.findById(rentId);
 
 exports.editOne = (estateId, estateData) => Rent.findByIdAndUpdate(estateId, estateData);
 

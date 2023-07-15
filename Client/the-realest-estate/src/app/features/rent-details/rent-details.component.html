@@ -1,2 +1,16 @@
-<p>rent-details works!</p>
-<span>{{rentId}}</span>
+<div class="details-wrapper">
+    <div class="details-head">
+        <div class="left-group">
+            <h4>{{rent?.type}}</h4>
+            <span>{{rent?.location}}</span>
+        </div>
+        <div class="right-group">
+            <h4>{{rent?.rent}} EUR</h4>
+            <span>({{rentPerArea}} EUR/m2)</span>
+        </div>
+    </div>
+    <img src="{{rent?.imageUrl}}" alt="">
+    <span>{{rent?.description}}</span>
+    <hr>
+    <h5>{{rent?.area}} square meters</h5>
+</div>

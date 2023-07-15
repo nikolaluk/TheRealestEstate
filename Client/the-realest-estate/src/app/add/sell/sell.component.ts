@@ -20,6 +20,7 @@ export class SellComponent {
   ) {}
 
   sellForm = this.formBuilder.group({
+    type: ['',[Validators.required]],
     location: ['', [Validators.required]],
     imageUrl: ['', [Validators.required]],
     area: ['', [Validators.required]],
@@ -29,6 +30,7 @@ export class SellComponent {
 
   handleSubmit(){
     const estateData = {
+      type: this.sellForm.get('type')?.value,
       location: this.sellForm.get('location')?.value,
       imageUrl: this.sellForm.get('imageUrl')?.value,
       description: this.sellForm.get('description')?.value,

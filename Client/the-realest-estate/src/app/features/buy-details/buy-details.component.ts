@@ -10,6 +10,7 @@ import { Estate } from 'src/app/types/Estate';
 })
 export class BuyDetailsComponent implements OnInit {
   estate: Estate | undefined;
+  pricePerSquare: string | undefined;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
@@ -17,6 +18,7 @@ export class BuyDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.apiService.getOneEstate(params['buyId']).subscribe(data => {
         this.estate = data;
+        this.pricePerSquare = (Number(this.estate?.price) / Number(this.estate?.area)).toFixed(2);
       })
     })
   }

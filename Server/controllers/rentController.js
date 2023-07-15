@@ -25,7 +25,7 @@ router.post('/', async (req,res) => {
 })
 
 router.get('/:furnitureId', async(req,res) => {
-    const estate = await estateManager.getOne(req.params.furnitureId);
+    const estate = await rentManager.getOne(req.params.furnitureId);
 
     res.json(estate);
 });

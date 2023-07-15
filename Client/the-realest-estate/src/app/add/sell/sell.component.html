@@ -3,6 +3,17 @@
     <div class="form">
         <form [formGroup]="sellForm" (ngSubmit)="handleSubmit()">
             <div class="form-group">
+                <label for="type">Type</label>
+                <input type="text" name="type" formControlName="type">
+                <!-- location error handling -->
+                <div *ngIf="sellForm.get('type')?.touched">
+                    <div *ngIf="sellForm.get('type')?.errors?.['required']">
+                        Type is required!
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="location">Location</label>
                 <input type="text" name="location" formControlName="location">
                 <!-- location error handling -->

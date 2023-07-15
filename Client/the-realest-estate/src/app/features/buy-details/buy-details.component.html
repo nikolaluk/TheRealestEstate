@@ -1,5 +1,16 @@
 <div class="details-wrapper">
-    <h4>{{estate?.location}}</h4>
+    <div class="details-head">
+        <div class="left-group">
+            <h4>{{estate?.type}}</h4>
+            <span>{{estate?.location}}</span>
+        </div>
+        <div class="right-group">
+            <h4>{{estate?.price}} EUR</h4>
+            <span>({{pricePerSquare}} EUR/m2)</span>
+        </div>
+    </div>
     <img src="{{estate?.imageUrl}}" alt="">
-
+    <span>{{estate?.description}}</span>
+    <hr>
+    <h5>{{estate?.area}} square meters</h5>
 </div>

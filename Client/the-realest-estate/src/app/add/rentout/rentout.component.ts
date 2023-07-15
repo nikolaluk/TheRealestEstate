@@ -21,6 +21,7 @@ export class RentoutComponent {
   ) {}
 
   rentOutForm = this.formBuilder.group({
+    type: ['',[Validators.required]],
     location: ['', [Validators.required]],
     imageUrl: ['', [Validators.required]],
     description: ['',[Validators.required]],
@@ -30,6 +31,7 @@ export class RentoutComponent {
 
   handleSubmit(){
     const rentData = {
+      type: this.rentOutForm.get('type')?.value,
       location: this.rentOutForm.get('location')?.value,
       imageUrl: this.rentOutForm.get('imageUrl')?.value,
       description: this.rentOutForm.get('description')?.value,
