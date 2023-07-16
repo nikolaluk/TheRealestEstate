@@ -1,18 +1,8 @@
 /* Footer styles */
 footer {
-    background-color: #845b5b;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: rgb(163, 124, 118);
     position:fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-}
-
-footer p {
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #ffffff;
 }

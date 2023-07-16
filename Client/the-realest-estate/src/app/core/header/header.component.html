@@ -1,36 +1,24 @@
-<header>
-    <div class="mini-navbar-wrap">
-        <div class="logo-wrap">
-            <p class="logo"><span class="logo">The Realest Estate</span></p>
-        </div>
-        <div class="mini-navbar">
-            <ul>
-                <li *ngIf="!authService.isLoggedIn">
-                    <a routerLink="/login">Login</a>
-                </li>
-                <li *ngIf="!authService.isLoggedIn">
-                    <a routerLink="/register">Register</a>
-                </li>
-                <li *ngIf="authService.isLoggedIn">
-                    <a href="#" (click)="logout()">Logout</a>
-                </li>
-            </ul>
-        </div>
+<header class="site-header custom-header-color text-black border-b-1 border-black">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold">
+          <a routerLink="/" class="text-black hover:text-gray-300 ml-4">The Realest Estate</a>
+        </h1>
+        <nav class="ml-4">
+          <ul class="flex space-x-4">
+            <li><a routerLink="/buy" class="text-black hover:text-gray-300">Buy estates</a></li>
+            <li><a routerLink="/rent" class="text-black hover:text-gray-300">Rent estates</a></li>
+            <li><a routerLink="/add" class="text-black hover:text-gray-300">Add listing</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="flex items-center" *ngIf="!authService.isLoggedIn">
+        <a routerLink="/login" class="btn btn-primary btn-sm mr-2 custom-rosybrown text-black hover:text-gray-300">Login</a>
+        <a routerLink="/register" class="btn btn-primary btn-sm mr-2 custom-rosybrown text-black hover:text-gray-300">Register</a>
+      </div>
+        <div class="flex items-center" *ngIf="authService.isLoggedIn">
+            <a href="#" class="btn btn-primary btn-sm mr-2 custom-rosybrown text-black hover:text-gray-300">Profile</a>
+            <a href="#" class="btn btn-primary btn-sm mr-2 custom-rosybrown text-black hover:text-gray-300" (click)="logout()">Logout</a>
+          </div>
     </div>
-    <nav>
-        <ul>
-            <li>
-                <a routerLink="/">Home</a>
-            </li>
-            <li>
-                <a routerLink="/buy">Buy</a>
-            </li>
-            <li>
-                <a routerLink="/rent">Rent</a>
-            </li>
-            <li *ngIf="authService.isLoggedIn">
-                <a routerLink="/add">Add</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+  </header>
