@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
+const Estate = require('../models/Estate')
 
 exports.register = async (userdata) => {
     const user = await User.create(userdata);
@@ -27,6 +28,12 @@ exports.login = async ({ email, password }) => {
     const result = getAuthResult(user);
 
     return result;
+}
+
+exports.addListingId = async (estateId, userId) => {
+    let user = await User.findById(userId);
+    user.listings.push(estateId);
+    return user.save();
 }
 
 function getAuthResult(user,) {

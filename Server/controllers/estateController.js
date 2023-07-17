@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const estateManager = require('../managers/estateManager');
+const userManager = require('../managers/userManager');
 
 router.get('/', async (req,res) => {
     try{
@@ -14,7 +15,9 @@ router.get('/', async (req,res) => {
 
 router.post('/', async (req,res) => {
     try {
-        await estateManager.create(req.body);
+        const estate = await estateManager.create(req.body);
+
+        await userManager.addListingId(estate._id.toString(), estate.ownerId);
         
         res.status(204).end();
     } catch (err) {

@@ -1,5 +1,7 @@
 const router = require('express').Router();
+
 const rentManager = require('../managers/rentManager');
+const userManager = require('../managers/userManager');
 
 router.get('/', async (req,res) => {
     try{
@@ -14,7 +16,9 @@ router.get('/', async (req,res) => {
 
 router.post('/', async (req,res) => {
     try {
-        await rentManager.create(req.body);
+        const rent = await rentManager.create(req.body);
+        
+        await userManager.addListingId(rent._id.toString(), rent.ownerId)
 
         res.status(204).end();
     } catch (err) {

@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required:true,
-    }
+    },
+    listings: [{type: String}],
 });
 
 userSchema.pre('save', async function () {
