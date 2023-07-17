@@ -24,7 +24,11 @@ const rentSchema = new mongoose.Schema({
     rent: {
         type: Number,
         required: true,
-    }
+    },
+    ownerId: {
+        type: String,
+        required: true,
+    },
 })
 
 const Rent = mongoose.model('Rent', rentSchema);

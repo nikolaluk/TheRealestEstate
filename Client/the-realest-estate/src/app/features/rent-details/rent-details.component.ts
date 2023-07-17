@@ -10,15 +10,19 @@ import { Rent } from 'src/app/types/Rent';
 })
 export class RentDetailsComponent implements OnInit{
   rent: Rent | undefined;
-  rentPerArea: string | undefined;
+  rentPerSquare: string | undefined;
+  isOwner: boolean | undefined;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
   ngOnInit(): void {
+    console.log('YEP');
+    
     this.route.params.subscribe(params => {
       this.apiService.getOneRentout(params['rentId']).subscribe(data => {
         this.rent = data;
-        this.rentPerArea = (Number(this.rent?.rent) / Number(this.rent?.area)).toFixed(2);
+        this.rentPerSquare = (Number(this.rent?.rent) / Number(this.rent?.area)).toFixed(2);
+        this.isOwner = localStorage.getItem('_id') == this.rent.ownerId;
       })
     })
   }

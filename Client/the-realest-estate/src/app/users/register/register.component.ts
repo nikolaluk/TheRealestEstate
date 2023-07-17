@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { FormBuilder, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
+import { Router } from '@angular/router';
 
 // Custom validator function
 const passwordMatchValidator: ValidatorFn = (control: AbstractControl): { [key: string]: boolean } | null => {
@@ -26,7 +27,9 @@ export class RegisterComponent {
   constructor(
     private apiService: ApiService, 
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+
+    private router: Router,
   ) {}
 
   registerForm = this.formBuilder.group({
@@ -44,5 +47,7 @@ export class RegisterComponent {
 
     this.apiService.registerUser(userData);
     this.authService.isLoggedIn = true;
+
+    this.router.navigate(['']);
   }
 }

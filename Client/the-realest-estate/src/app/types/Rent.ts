@@ -6,4 +6,5 @@ export interface Rent {
     area: number,
     description: string,
     rent: number,
+    ownerId: string,
 }

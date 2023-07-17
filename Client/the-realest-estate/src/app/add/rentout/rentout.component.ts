@@ -37,6 +37,7 @@ export class RentoutComponent {
       description: this.rentOutForm.get('description')?.value,
       area: this.rentOutForm.get('area')?.value,
       rent: Number(this.rentOutForm.get('rent')?.value),
+      ownerId: localStorage.getItem('_id'),
     }
 
     this.apiService.createRent(rentData);

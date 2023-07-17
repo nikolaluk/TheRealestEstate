@@ -36,6 +36,7 @@ export class SellComponent {
       description: this.sellForm.get('description')?.value,
       area: this.sellForm.get('area')?.value,
       price: Number(this.sellForm.get('price')?.value),
+      ownerId: localStorage.getItem('_id'),
     }
 
     this.apiService.createEstate(estateData);

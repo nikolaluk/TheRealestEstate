@@ -1,16 +1,16 @@
-<div class="details-wrapper">
-    <div class="details-head">
-        <div class="left-group">
-            <h4>{{rent?.type}}</h4>
-            <span>{{rent?.location}}</span>
+<div class="p-4">
+    <div class="bg-white shadow-lg rounded-lg p-4">
+        <div class="flex justify-between items-center mb-4">
+            <h4 class="text-lg font-bold">{{rent?.type}}</h4>
+            <span class="text-gray-500">{{rent?.location}}</span>
         </div>
-        <div class="right-group">
-            <h4>{{rent?.rent}} EUR</h4>
-            <span>({{rentPerArea}} EUR/m2)</span>
+        <div class="flex justify-between items-center mb-4">
+            <h4 class="text-2xl font-bold">{{rent?.rent}} EUR</h4>
+            <span class="text-gray-500">({{rentPerSquare}} EUR/m2)</span>
         </div>
+        <img class="mb-4" src="{{rent?.imageUrl}}" alt="">
+        <span class="text-gray-700">{{rent?.description}}</span>
+        <hr class="my-4">
+        <h5 class="text-lg font-bold">{{rent?.area}} square meters</h5>
     </div>
-    <img src="{{rent?.imageUrl}}" alt="">
-    <span>{{rent?.description}}</span>
-    <hr>
-    <h5>{{rent?.area}} square meters</h5>
 </div>

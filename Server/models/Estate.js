@@ -24,7 +24,11 @@ const estateSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true,
-    }
+    },
+    ownerId: {
+        type: String,
+        required: true,
+    },
 });
 
 const Estate = mongoose.model('Estate', estateSchema);

@@ -17,7 +17,7 @@
         <a routerLink="/register" class="btn btn-primary btn-sm mr-2 custom-rosybrown text-black hover:text-gray-300">Register</a>
       </div>
         <div class="flex items-center" *ngIf="authService.isLoggedIn">
-            <a href="#" class="btn btn-primary btn-sm mr-2 custom-rosybrown text-black hover:text-gray-300">Profile</a>
+            <a routerLink="/profile" class="btn btn-primary btn-sm mr-2 custom-rosybrown text-black hover:text-gray-300">Profile</a>
             <a href="#" class="btn btn-primary btn-sm mr-2 custom-rosybrown text-black hover:text-gray-300" (click)="logout()">Logout</a>
           </div>
     </div>

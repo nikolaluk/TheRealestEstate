@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ApiService } from 'src/app/api.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,6 +16,8 @@ export class LoginComponent {
     private apiService: ApiService, 
     private authService: AuthService,
     private formBuilder: FormBuilder,
+
+    private router: Router,
   ) {}
 
   loginForm = this.formBuilder.group({
@@ -30,5 +33,7 @@ export class LoginComponent {
 
     this.apiService.loginUser(userData);
     this.authService.isLoggedIn = true;
+
+    this.router.navigate(['']);
   }
 }

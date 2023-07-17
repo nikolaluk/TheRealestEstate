@@ -11,6 +11,7 @@ import { Estate } from 'src/app/types/Estate';
 export class BuyDetailsComponent implements OnInit {
   estate: Estate | undefined;
   pricePerSquare: string | undefined;
+  isOwner: boolean | undefined;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
@@ -19,7 +20,8 @@ export class BuyDetailsComponent implements OnInit {
       this.apiService.getOneEstate(params['buyId']).subscribe(data => {
         this.estate = data;
         this.pricePerSquare = (Number(this.estate?.price) / Number(this.estate?.area)).toFixed(2);
+        this.isOwner = localStorage.getItem('_id') == this.estate.ownerId;
       })
-    })
+    });
   }
 }
