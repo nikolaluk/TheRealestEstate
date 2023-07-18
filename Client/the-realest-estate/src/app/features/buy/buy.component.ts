@@ -13,7 +13,7 @@ export class BuyComponent implements OnInit{
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.apiService.getAllEstatesForSale().subscribe((data) => {
+    this.apiService.getAllEstates().subscribe((data) => {
       this.estates = data;
     });
   }

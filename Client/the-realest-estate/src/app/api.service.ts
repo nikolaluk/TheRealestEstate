@@ -48,7 +48,7 @@ export class ApiService {
       .subscribe(data => console.log(data));
   }
 
-  getAllEstatesForSale(){
+  getAllEstates(){
     const { appUrl } = environment;
     return this.http.get<Estate[]>(`${appUrl}/estates`);
   }
@@ -66,5 +66,10 @@ export class ApiService {
   getOneRentout(rentId: string){
     const { appUrl } = environment;
     return this.http.get<Rent>(`${appUrl}/rents/${rentId}`);
+  }
+
+  getProfileListings(userId: string | null){
+    const { appUrl } = environment;
+    return this.http.get<any[]>(`${appUrl}/users/${userId}`);
   }
 }

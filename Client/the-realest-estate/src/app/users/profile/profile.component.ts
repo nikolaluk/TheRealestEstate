@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Estate } from 'src/app/types/Estate';
-import { Rent } from 'src/app/types/Rent';
-import { User } from 'src/app/types/User';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,9 +8,16 @@ import { User } from 'src/app/types/User';
 })
 export class ProfileComponent implements OnInit{
   email: string | null | undefined;
+  userId: string | null | undefined;
   listings: any[] | undefined;
+
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.email = localStorage.getItem('email');
+    this.userId = localStorage.getItem('_id')
+    
+    this.apiService.getProfileListings(this.userId)
+      .subscribe(data => this.listings = data);
   }
 }

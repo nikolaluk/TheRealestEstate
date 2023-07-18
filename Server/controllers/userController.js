@@ -27,6 +27,19 @@ router.post('/login', async (req,res) => {
     }
 });
 
+router.get('/:userId', async (req,res) => {
+    try {
+        const id = req.params.userId;
+        const listings = await userManager.returnListings(id);
+
+        res.json(listings);
+    } catch (err) {
+        res.status(400).json({
+            message: err.message,
+        })
+    }
+});
+
 router.get('/logout',(req,res) => {
     res.end();
 });

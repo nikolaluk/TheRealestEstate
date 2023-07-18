@@ -2,7 +2,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
-const Estate = require('../models/Estate')
+const Estate = require('../models/Estate');
+const Rent = require('../models/Rent');
 
 exports.register = async (userdata) => {
     const user = await User.create(userdata);
@@ -34,6 +35,24 @@ exports.addListingId = async (estateId, userId) => {
     let user = await User.findById(userId);
     user.listings.push(estateId);
     return user.save();
+}
+
+exports.returnListings = async (userId) => {
+    const user = await User.findById(userId);
+    let listings = [];
+
+    for(let id of user.listings) {
+        const rent = await Rent.findById(id);
+        const estate = await Estate.findById(id);
+
+        if(rent) {
+            listings.push(rent);
+        } else if(estate) {
+            listings.push(estate);
+        }
+    }
+
+    return listings;
 }
 
 function getAuthResult(user,) {
