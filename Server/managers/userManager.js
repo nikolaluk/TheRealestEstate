@@ -6,6 +6,10 @@ const Estate = require('../models/Estate');
 const Rent = require('../models/Rent');
 
 exports.register = async (userdata) => {
+    if(await User.findOne({email: userdata.email})){
+        throw new Error('Email is already a member!');
+    }
+
     const user = await User.create(userdata);
 
     const result = getAuthResult(user);
@@ -17,13 +21,19 @@ exports.login = async ({ email, password }) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-        throw new Error('Invalid username or password');
+        throw new Error('Invalid username or password!');
     }
 
+    console.log('Input password: ' + password);
+    console.log('Bcrypt password: ' + user.password);
+
     const isValid = await bcrypt.compare(password, user.password);
+    console.log(user);
+
+    console.log(isValid);
 
     if (!isValid) {
-        throw new Error('Invalid username or password');
+        throw new Error('Invalid username or password!');
     }
 
     const result = getAuthResult(user);
@@ -32,9 +42,7 @@ exports.login = async ({ email, password }) => {
 }
 
 exports.addListingId = async (estateId, userId) => {
-    let user = await User.findById(userId);
-    user.listings.push(estateId);
-    return user.save();
+    return User.findByIdAndUpdate(userId, {$push: { listings: estateId}});
 }
 
 exports.returnListings = async (userId) => {
@@ -55,7 +63,7 @@ exports.returnListings = async (userId) => {
     return listings;
 }
 
-function getAuthResult(user,) {
+function getAuthResult(user) {
     const payload = {
         _id: user._id,
         email: user.email,

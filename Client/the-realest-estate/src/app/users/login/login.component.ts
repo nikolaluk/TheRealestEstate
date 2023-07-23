@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder,Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ApiService } from 'src/app/api.service';
@@ -12,13 +12,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 
 export class LoginComponent {
+  errorMessage: string | undefined;
+
   constructor(
-    private apiService: ApiService, 
+    private apiService: ApiService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
 
     private router: Router,
-  ) {}
+  ) { }
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -31,9 +33,18 @@ export class LoginComponent {
       password: this.loginForm.get('password')?.value,
     }
 
-    this.apiService.loginUser(userData);
-    this.authService.isLoggedIn = true;
+    this.apiService.loginUser(userData)
+      .subscribe(
+        (data) => {
+        localStorage.setItem('_id', data._id);
+        localStorage.setItem('email', data.email);
+        localStorage.setItem('accessToken', data.accessToken)
 
-    this.router.navigate(['']);
+        this.authService.isLoggedIn = true;
+        this.router.navigate(['']);
+      },
+        (err) => {
+          this.errorMessage = err.error.message;
+        });
   }
 }

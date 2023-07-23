@@ -16,22 +16,12 @@ export class ApiService {
 
   registerUser(userData: any) {    
     const { appUrl } = environment;
-    return this.http.post<any>(`${appUrl}/users/register`,userData)
-      .subscribe((data) => {
-        localStorage.setItem('_id', data._id);
-        localStorage.setItem('email',data.email);
-        localStorage.setItem('accessToken', data.accessToken)
-      });
+    return this.http.post<any>(`${appUrl}/users/register`,userData);
   }
 
   loginUser(userData: any) {
     const { appUrl } = environment;
-    return this.http.post<any>(`${appUrl}/users/login`,userData)
-      .subscribe((data) => {
-        localStorage.setItem('_id', data._id);
-        localStorage.setItem('email',data.email);
-        localStorage.setItem('accessToken', data.accessToken)
-      });
+    return this.http.post<any>(`${appUrl}/users/login`,userData);
   }
 
   createEstate(estateData: any) {

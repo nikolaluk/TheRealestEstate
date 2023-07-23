@@ -41,6 +41,9 @@
                         </div>
                     </div>
                 </div>
+                <div *ngIf="errorMessage" class="text-red-500">
+                    {{errorMessage}}
+                </div>
             </div>
 
             <button class="btn bg-gray-200 mt-6 w-full">Register</button>

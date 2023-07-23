@@ -29,6 +29,9 @@
                             Password too short!
                         </div>
                     </div>
+                    <div *ngIf="errorMessage" class="text-red-500">
+                        {{errorMessage}}
+                    </div>
                 </div>
             </div>
 
