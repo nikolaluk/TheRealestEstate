@@ -24,6 +24,11 @@ export class ApiService {
     return this.http.post<any>(`${appUrl}/users/login`,userData);
   }
 
+  getProfileListings(userId: string | null){
+    const { appUrl } = environment;
+    return this.http.get<any[]>(`${appUrl}/users/${userId}`);
+  }
+
   createEstate(estateData: any) {
     const { appUrl } = environment;
     
@@ -58,8 +63,13 @@ export class ApiService {
     return this.http.get<Rent>(`${appUrl}/rents/${rentId}`);
   }
 
-  getProfileListings(userId: string | null){
+  deleteEstate(estateId: string | undefined){
     const { appUrl } = environment;
-    return this.http.get<any[]>(`${appUrl}/users/${userId}`);
+    return this.http.delete(`${appUrl}/estates/${estateId}`);
+  }
+
+  deleteRent(rentId: string | undefined){
+    const { appUrl } = environment;
+    return this.http.delete(`${appUrl}/rents/${rentId}`);
   }
 }

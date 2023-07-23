@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Rent } from 'src/app/types/Rent';
 
@@ -13,7 +13,19 @@ export class RentDetailsComponent implements OnInit{
   rentPerSquare: string | undefined;
   isOwner: boolean | undefined;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router:Router) {}
+
+  deleteRent():void {
+    this.apiService.deleteRent(this.rent?._id)
+      .subscribe(
+        (data) => {
+          this.router.navigate(['rent']);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
 
   ngOnInit(): void {
     console.log('YEP');

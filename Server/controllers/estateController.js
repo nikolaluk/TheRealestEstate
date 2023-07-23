@@ -27,20 +27,20 @@ router.post('/', async (req,res) => {
     }
 })
 
-router.get('/:furnitureId', async(req,res) => {
-    const estate = await estateManager.getOne(req.params.furnitureId);
+router.get('/:estateId', async(req,res) => {
+    const estate = await estateManager.getOne(req.params.estateId);
 
     res.json(estate);
 });
 
-router.put('/:furnitureId', async(req,res) => {
-    await estateManager.editOne(req.params.furnitureId,req.body);
+router.put('/:estateId', async(req,res) => {
+    await estateManager.editOne(req.params.estateId,req.body);
 
     res.status(204).end();
 });
 
-router.delete('/:furnitureId', async(req,res) => {
-    await estateManager.removeOne(req.params.furnitureId);
+router.delete('/:estateId', async(req,res) => {
+    await estateManager.removeOne(req.params.estateId);
 
     res.status(204).end();
 });

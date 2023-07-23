@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Estate } from 'src/app/types/Estate';
 
@@ -13,7 +13,19 @@ export class BuyDetailsComponent implements OnInit {
   pricePerSquare: string | undefined;
   isOwner: boolean | undefined;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
+
+  deleteEstate():void {
+    this.apiService.deleteEstate(this.estate?._id)
+      .subscribe(
+        (data) => {
+          this.router.navigate(['buy']);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
