@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -11,13 +12,17 @@ export class ProfileComponent implements OnInit{
   userId: string | null | undefined;
   listings: any[] | undefined;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
     this.email = localStorage.getItem('email');
     this.userId = localStorage.getItem('_id')
     
     this.apiService.getProfileListings(this.userId)
-      .subscribe(data => this.listings = data);
+      .subscribe(
+        (data) => {this.listings = data},
+        // TODO: redirect to 404
+        (err) => {this.router.navigate([''])}
+        );
   }
 }

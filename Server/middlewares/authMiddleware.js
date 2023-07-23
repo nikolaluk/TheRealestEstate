@@ -19,3 +19,11 @@ exports.auth = (req,res,next) => {
         next();
     }
 }
+
+exports.isAuth = (req, res, next) => {
+    if(!req.user){
+        throw new Error('Forbiden');
+    }
+
+    next();
+}

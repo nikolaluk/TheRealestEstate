@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const userManager = require('../managers/userManager');
+const { isAuth } = require('../middlewares/authMiddleware');
 
 router.post('/register', async (req,res) => {
     try{
@@ -28,7 +29,7 @@ router.post('/login', async (req,res) => {
     }
 });
 
-router.get('/:userId', async (req,res) => {
+router.get('/:userId', isAuth, async (req,res) => {
     try {
         const id = req.params.userId;
         const listings = await userManager.returnListings(id);
