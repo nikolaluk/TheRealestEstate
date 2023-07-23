@@ -2,12 +2,15 @@ const jwt = require('jsonwebtoken');
 
 exports.auth = (req,res,next) => {
     const token = req.header('X-Authorization');
+    //TODO add route guards
 
     if(token) {
         try{
             const decodedToken = jwt.verify(token,'SECRET');
 
             req.user = decodedToken;
+
+            console.log(req.user);
 
             next();
         } catch(err) {
