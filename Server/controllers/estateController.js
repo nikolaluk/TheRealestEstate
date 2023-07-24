@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const estateManager = require('../managers/estateManager');
 const userManager = require('../managers/userManager');
+const { isAuth } = require('../middlewares/authMiddleware');
 
 router.get('/', async (req,res) => {
     try{
@@ -13,16 +14,16 @@ router.get('/', async (req,res) => {
     
 });
 
-router.post('/', async (req,res) => {
+router.post('/', isAuth, async (req,res) => {
     try {
-        const estate = await estateManager.create(req.body);
+        const estate = await estateManager.create(req.body['estateData']);
 
         await userManager.addListingId(estate._id.toString(), estate.ownerId);
         
         res.status(204).end();
     } catch (err) {
         res.status(400).json({
-            message: 'Cannot create estate',
+            message: err.message,
         });
     }
 })
@@ -33,13 +34,13 @@ router.get('/:estateId', async(req,res) => {
     res.json(estate);
 });
 
-router.put('/:estateId', async(req,res) => {
+router.put('/:estateId', isAuth, async(req,res) => {
     await estateManager.editOne(req.params.estateId,req.body);
 
     res.status(204).end();
 });
 
-router.delete('/:estateId', async(req,res) => {
+router.delete('/:estateId', isAuth, async(req,res) => {
     await estateManager.removeOne(req.params.estateId);
 
     res.status(204).end();

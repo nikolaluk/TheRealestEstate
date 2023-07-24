@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from './types/User';
 import { Estate } from './types/Estate';
 import { Rent } from './types/Rent';
 
@@ -31,8 +30,9 @@ export class ApiService {
 
   createEstate(estateData: any) {
     const { appUrl } = environment;
+    const accessToken = localStorage.getItem('accessToken');
     
-    return this.http.post<any>(`${appUrl}/estates`,estateData)
+    return this.http.post<any>(`${appUrl}/estates`,{estateData,accessToken})
       .subscribe(data => console.log(data));
   }
 
@@ -65,6 +65,7 @@ export class ApiService {
 
   deleteEstate(estateId: string | undefined){
     const { appUrl } = environment;
+
     return this.http.delete(`${appUrl}/estates/${estateId}`);
   }
 

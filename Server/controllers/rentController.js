@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const rentManager = require('../managers/rentManager');
 const userManager = require('../managers/userManager');
+const { isAuth } = require('../middlewares/authMiddleware');
 
 router.get('/', async (req,res) => {
     try{
@@ -10,11 +11,14 @@ router.get('/', async (req,res) => {
         res.json(rents);
     } catch (err) {
         console.log(err);
+        res.status(400).json({
+            message: err.message,
+        })
     }
     
 });
 
-router.post('/', async (req,res) => {
+router.post('/', isAuth,async (req,res) => {
     try {
         const rent = await rentManager.create(req.body);
         
@@ -34,13 +38,13 @@ router.get('/:rentId', async(req,res) => {
     res.json(estate);
 });
 
-router.put('/:rentId', async(req,res) => {
+router.put('/:rentId', isAuth,async(req,res) => {
     await estateManager.editOne(req.params.rentId,req.body);
 
     res.status(204).end();
 });
 
-router.delete('/:rentId', async(req,res) => {
+router.delete('/:rentId', isAuth,async(req,res) => {
     await rentManager.removeOne(req.params.rentId);
 
     res.status(204).end();

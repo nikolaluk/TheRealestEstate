@@ -1,16 +1,13 @@
 const jwt = require('jsonwebtoken');
 
 exports.auth = (req,res,next) => {
-    const token = req.header('X-Authorization');
-    //TODO add route guards
+    const token = req.body['accessToken'];
 
     if(token) {
         try{
             const decodedToken = jwt.verify(token,'SECRET');
 
             req.user = decodedToken;
-
-            console.log(req.user);
 
             next();
         } catch(err) {
@@ -25,7 +22,10 @@ exports.auth = (req,res,next) => {
 
 exports.isAuth = (req, res, next) => {
     if(!req.user){
-        throw new Error('Forbiden');
+        res.status(400).json({
+            message: 'Forbiden',
+        });
+        return;
     }
 
     next();
