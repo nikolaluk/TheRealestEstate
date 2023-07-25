@@ -13,7 +13,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SellComponent {
   constructor(
     private apiService: ApiService, 
-    private authService: AuthService,
     private formBuilder: FormBuilder,
 
     private router: Router,

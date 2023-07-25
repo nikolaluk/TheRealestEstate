@@ -6,7 +6,8 @@ import { RentComponent } from './rent/rent.component';
 import { AddComponent } from './add/add.component';
 import { BuyDetailsComponent } from './buy-details/buy-details.component';
 import { RentDetailsComponent } from './rent-details/rent-details.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { BuyEditComponent } from './buy-edit/buy-edit.component';
+import { RentEditComponent } from './rent-edit/rent-edit.component';
 
 const routes: Routes = [
     //features
@@ -16,7 +17,10 @@ const routes: Routes = [
         path: 'buy',
         children: [
             { path: '', component: BuyComponent },
-            { path: ':buyId', component: BuyDetailsComponent }
+            { path: ':buyId', children: [
+                {path: '', component: BuyDetailsComponent},
+                {path: 'edit', component: BuyEditComponent},
+            ] }
         ]
     },
 
@@ -24,7 +28,10 @@ const routes: Routes = [
         path: 'rent',
         children: [
             { path: '', component: RentComponent},
-            { path: ':rentId', component: RentDetailsComponent }
+            { path: ':rentId', children: [
+                {path: '', component:RentDetailsComponent},
+                {path: 'edit', component: RentEditComponent},
+            ] }
         ]
     },
 

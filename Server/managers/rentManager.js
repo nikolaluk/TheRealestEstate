@@ -4,7 +4,7 @@ exports.getAll = async () => Rent.find();
 
 exports.getOne = (rentId) => Rent.findById(rentId);
 
-exports.editOne = (rentId, estateData) => Rent.findByIdAndUpdate(rentId, estateData);
+exports.editOne = (rentId, rentData) => Rent.findByIdAndUpdate(rentId, rentData);
 
 exports.removeOne = (rentId) => Rent.findByIdAndRemove(rentId);
 

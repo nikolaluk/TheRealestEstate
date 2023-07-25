@@ -15,7 +15,7 @@
 
         <!-- For owner -->
         <div *ngIf="isOwner">
-            <button class="btn">Edit</button>
+            <button class="btn" routerLink="/rent/{{rent?._id}}/edit">Edit</button>
             <button class="btn" (click)="deleteRent()">Delete</button>
         </div>
 

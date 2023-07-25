@@ -10,6 +10,8 @@ import { FeaturesRoutingModule } from './features-routing.module';
 import { BuyDetailsComponent } from './buy-details/buy-details.component';
 import { RentDetailsComponent } from './rent-details/rent-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BuyEditComponent } from './buy-edit/buy-edit.component';
+import { RentEditComponent } from './rent-edit/rent-edit.component';
 
 
 
@@ -22,6 +24,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BuyDetailsComponent,
     RentDetailsComponent,
     NotFoundComponent,
+    BuyEditComponent,
+    RentEditComponent,
   ],
   imports: [
     CommonModule,

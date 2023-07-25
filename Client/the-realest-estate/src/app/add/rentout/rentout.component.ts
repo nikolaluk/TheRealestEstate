@@ -14,7 +14,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RentoutComponent {
   constructor(
     private apiService: ApiService, 
-    private authService: AuthService,
     private formBuilder: FormBuilder,
 
     private router: Router,

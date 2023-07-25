@@ -1,0 +1,77 @@
+<div class="flex justify-center items-center h-full">
+    <div class="max-w-md w-full p-6 space-y-6 bg-white rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-center">Edit your estate</h1>
+        <form [formGroup]="sellForm" (ngSubmit)="handleSubmit()">
+            <div class="space-y-4">
+                <div>
+                    <label for="type" class="text-gray-600 block">Type</label>
+                    <input type="text" name="type" formControlName="type" class="form-input border border-gray-300 rounded-md p-2 w-full">
+                    <!-- email error handling -->
+                    <div *ngIf="sellForm.get('type')?.touched" class="text-red-500">
+                        <div *ngIf="sellForm.get('type')?.errors?.['required']">
+                            Type is required!
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="location" class="text-gray-600 block">Location</label>
+                    <input type="text" name="location" formControlName="location" class="form-input border border-gray-300 rounded-md p-2 w-full">
+                    <!-- password error handling -->
+                    <div *ngIf="sellForm.get('location')?.touched" class="text-red-500">
+                        <div *ngIf="sellForm.get('location')?.errors?.['required']">
+                            Location is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="imageUrl" class="text-gray-600 block">ImageUrl</label>
+                    <input type="text" name="imageUrl" formControlName="imageUrl" class="form-input border border-gray-300 rounded-md p-2 w-full">
+                    <!-- repeatPassword error handling -->
+                    <div *ngIf="sellForm.get('imageUrl')?.touched" class="text-red-500">
+                        <div *ngIf="sellForm.get('imageUrl')?.errors?.['required']">
+                            ImageUrl is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="description" class="text-gray-600 block">Description</label>
+                    <input type="text" name="description" formControlName="description" class="form-input border border-gray-300 rounded-md p-2 w-full">
+                    <!-- repeatPassword error handling -->
+                    <div *ngIf="sellForm.get('description')?.touched" class="text-red-500">
+                        <div *ngIf="sellForm.get('description')?.errors?.['required']">
+                            Description is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="area" class="text-gray-600 block">Area</label>
+                    <input type="number" name="area" formControlName="area" class="form-input border border-gray-300 rounded-md p-2 w-full">
+                    <!-- repeatPassword error handling -->
+                    <div *ngIf="sellForm.get('area')?.touched" class="text-red-500">
+                        <div *ngIf="sellForm.get('area')?.errors?.['required']">
+                            Area is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="price" class="text-gray-600 block">Price</label>
+                    <input type="number" name="price" formControlName="price" class="form-input border border-gray-300 rounded-md p-2 w-full">
+                    <!-- repeatPassword error handling -->
+                    <div *ngIf="sellForm.get('price')?.touched" class="text-red-500">
+                        <div *ngIf="sellForm.get('price')?.errors?.['required']">
+                            Price is required!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn bg-gray-200 mt-6 w-full">Edit</button>
+            
+        </form>
+    </div>
+</div>

@@ -13,19 +13,26 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  registerUser(userData: any) {    
+  registerUser(userData: any) {
     const { appUrl } = environment;
-    return this.http.post<any>(`${appUrl}/users/register`,userData);
+    return this.http.post<any>(`${appUrl}/users/register`, userData);
   }
 
   loginUser(userData: any) {
     const { appUrl } = environment;
-    return this.http.post<any>(`${appUrl}/users/login`,userData);
+    return this.http.post<any>(`${appUrl}/users/login`, userData);
   }
 
-  getProfileListings(userId: string | null){
+  getProfileListings(userId: string | null) {
     const { appUrl } = environment;
-    return this.http.get<any[]>(`${appUrl}/users/${userId}`);
+    const accessToken = localStorage.getItem('accessToken');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Authorization': accessToken || '',
+    })
+
+    return this.http.get<any[]>(`${appUrl}/users/${userId}`, {headers});
   }
 
   createEstate(estateData: any) {
@@ -36,8 +43,8 @@ export class ApiService {
       'Content-Type': 'application/json',
       'X-Authorization': accessToken || '',
     })
-    
-    return this.http.post<any>(`${appUrl}/estates`, estateData, {headers})
+
+    return this.http.post<any>(`${appUrl}/estates`, estateData, { headers })
       .subscribe(data => console.log(data));
   }
 
@@ -50,31 +57,31 @@ export class ApiService {
       'X-Authorization': accessToken || '',
     })
 
-    return this.http.post<any>(`${appUrl}/rents`, rentData, {headers})
+    return this.http.post<any>(`${appUrl}/rents`, rentData, { headers })
       .subscribe(data => console.log(data));
   }
 
-  getAllEstates(){
+  getAllEstates() {
     const { appUrl } = environment;
     return this.http.get<Estate[]>(`${appUrl}/estates`);
   }
 
-  getAllRentouts(){
+  getAllRentouts() {
     const { appUrl } = environment;
     return this.http.get<Rent[]>(`${appUrl}/rents`);
   }
 
-  getOneEstate(estateId: string){
+  getOneEstate(estateId: string) {
     const { appUrl } = environment;
     return this.http.get<Estate>(`${appUrl}/estates/${estateId}`);
   }
 
-  getOneRentout(rentId: string){
+  getOneRentout(rentId: string) {
     const { appUrl } = environment;
     return this.http.get<Rent>(`${appUrl}/rents/${rentId}`);
   }
 
-  deleteEstate(estateId: string | undefined){
+  deleteEstate(estateId: string | undefined) {
     const { appUrl } = environment;
     const accessToken = localStorage.getItem('accessToken');
 
@@ -83,10 +90,10 @@ export class ApiService {
       'X-Authorization': accessToken || '',
     })
 
-    return this.http.delete<any>(`${appUrl}/estates/${estateId}`, {headers});
+    return this.http.delete<any>(`${appUrl}/estates/${estateId}`, { headers });
   }
 
-  deleteRent(rentId: string | undefined){
+  deleteRent(rentId: string | undefined) {
     const { appUrl } = environment;
     const accessToken = localStorage.getItem('accessToken');
 
@@ -95,6 +102,30 @@ export class ApiService {
       'X-Authorization': accessToken || '',
     })
 
-    return this.http.delete(`${appUrl}/rents/${rentId}`, {headers});
+    return this.http.delete(`${appUrl}/rents/${rentId}`, { headers });
+  }
+
+  editEstate(estateId: string | undefined, estateData: any) {
+    const { appUrl } = environment;
+    const accessToken = localStorage.getItem('accessToken');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Authorization': accessToken || '',
+    })
+
+    return this.http.put(`${appUrl}/estates/${estateId}`, estateData, { headers });
+  }
+
+  editRent(rentId: string | undefined, rentData: any) {
+    const { appUrl } = environment;
+    const accessToken = localStorage.getItem('accessToken');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Authorization': accessToken || '',
+    })
+
+    return this.http.put(`${appUrl}/rents/${rentId}`, rentData, { headers });
   }
 }

@@ -15,7 +15,7 @@
 
         <!-- For owner -->
         <div *ngIf="isOwner">
-            <button class="btn">Edit</button>
+            <button class="btn" routerLink="/buy/{{estate?._id}}/edit">Edit</button>
             <button class="btn" (click)="deleteEstate()">Delete</button>
         </div>
 

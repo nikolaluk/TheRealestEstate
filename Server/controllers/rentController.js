@@ -4,8 +4,8 @@ const rentManager = require('../managers/rentManager');
 const userManager = require('../managers/userManager');
 const { isAuth } = require('../middlewares/authMiddleware');
 
-router.get('/', async (req,res) => {
-    try{
+router.get('/', async (req, res) => {
+    try {
         const rents = await rentManager.getAll();
 
         res.json(rents);
@@ -15,13 +15,13 @@ router.get('/', async (req,res) => {
             message: err.message,
         })
     }
-    
+
 });
 
-router.post('/', isAuth,async (req,res) => {
+router.post('/', isAuth, async (req, res) => {
     try {
         const rent = await rentManager.create(req.body);
-        
+
         await userManager.addListingId(rent._id.toString(), rent.ownerId)
 
         res.status(204).end();
@@ -32,22 +32,54 @@ router.post('/', isAuth,async (req,res) => {
     }
 })
 
-router.get('/:rentId', async(req,res) => {
-    const estate = await rentManager.getOne(req.params.rentId);
+router.get('/:rentId', async (req, res) => {
+    try {
+        const rent = await rentManager.getOne(req.params.rentId);
 
-    res.json(estate);
+        res.json(rent);
+    } catch (err) {
+        res.status(400).json({
+            message: err.message,
+        });
+    }
 });
 
-router.put('/:rentId', isAuth,async(req,res) => {
-    await estateManager.editOne(req.params.rentId,req.body);
+router.put('/:rentId', isAuth, async (req, res) => {
+    try {
+        const rent = await rentManager.getOne(req.params.rentId);
+        const isOwner = req.user?._id == rent.ownerId;
 
-    res.status(204).end();
+        if (!isOwner) {
+            throw new Error('Unauthorized!');
+        }
+
+        await rentManager.editOne(req.params.rentId, req.body);
+
+        res.status(204).end();
+    } catch (err) {
+        res.status(400).json({
+            message: err.message,
+        });
+    }
 });
 
-router.delete('/:rentId', isAuth,async(req,res) => {
-    await rentManager.removeOne(req.params.rentId);
+router.delete('/:rentId', isAuth, async (req, res) => {
+    try {
+        const rent = await rentManager.getOne(req.params.rentId);
+        const isOwner = req.user?._id == rent.ownerId;
 
-    res.status(204).end();
+        if (!isOwner) {
+            throw new Error('Unauthorized!');
+        }
+
+        await rentManager.removeOne(req.params.rentId);
+
+        res.status(204).end();
+    } catch (err) {
+        res.status(400).json({
+            message: err.message,
+        });
+    }
 });
 
 module.exports = router;
