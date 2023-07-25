@@ -27,9 +27,7 @@ export class RentDetailsComponent implements OnInit{
       );
   }
 
-  ngOnInit(): void {
-    console.log('YEP');
-    
+  ngOnInit(): void {    
     this.route.params.subscribe(params => {
       this.apiService.getOneRentout(params['rentId']).subscribe(data => {
         this.rent = data;

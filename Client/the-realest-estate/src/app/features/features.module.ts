@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FeaturesRoutingModule } from './features-routing.module';
 import { BuyDetailsComponent } from './buy-details/buy-details.component';
 import { RentDetailsComponent } from './rent-details/rent-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -20,6 +21,7 @@ import { RentDetailsComponent } from './rent-details/rent-details.component';
     AddComponent,
     BuyDetailsComponent,
     RentDetailsComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,

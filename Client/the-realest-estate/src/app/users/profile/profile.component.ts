@@ -21,8 +21,7 @@ export class ProfileComponent implements OnInit{
     this.apiService.getProfileListings(this.userId)
       .subscribe(
         (data) => {this.listings = data},
-        // TODO: redirect to 404
-        (err) => {this.router.navigate([''])}
+        (err) => {this.router.navigate(['404'])}
         );
   }
 }

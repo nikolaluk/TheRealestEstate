@@ -27,7 +27,7 @@ router.post('/', isAuth,async (req,res) => {
         res.status(204).end();
     } catch (err) {
         res.status(400).json({
-            message: 'Cannot create rent',
+            message: err.message,
         });
     }
 })

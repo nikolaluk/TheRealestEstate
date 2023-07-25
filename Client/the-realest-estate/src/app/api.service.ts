@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Estate } from './types/Estate';
 import { Rent } from './types/Rent';
@@ -31,15 +31,26 @@ export class ApiService {
   createEstate(estateData: any) {
     const { appUrl } = environment;
     const accessToken = localStorage.getItem('accessToken');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Authorization': accessToken || '',
+    })
     
-    return this.http.post<any>(`${appUrl}/estates`,{estateData,accessToken})
+    return this.http.post<any>(`${appUrl}/estates`, estateData, {headers})
       .subscribe(data => console.log(data));
   }
 
   createRent(rentData: any) {
     const { appUrl } = environment;
+    const accessToken = localStorage.getItem('accessToken');
 
-    return this.http.post<any>(`${appUrl}/rents`, rentData)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Authorization': accessToken || '',
+    })
+
+    return this.http.post<any>(`${appUrl}/rents`, rentData, {headers})
       .subscribe(data => console.log(data));
   }
 
@@ -65,12 +76,25 @@ export class ApiService {
 
   deleteEstate(estateId: string | undefined){
     const { appUrl } = environment;
+    const accessToken = localStorage.getItem('accessToken');
 
-    return this.http.delete(`${appUrl}/estates/${estateId}`);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Authorization': accessToken || '',
+    })
+
+    return this.http.delete<any>(`${appUrl}/estates/${estateId}`, {headers});
   }
 
   deleteRent(rentId: string | undefined){
     const { appUrl } = environment;
-    return this.http.delete(`${appUrl}/rents/${rentId}`);
+    const accessToken = localStorage.getItem('accessToken');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Authorization': accessToken || '',
+    })
+
+    return this.http.delete(`${appUrl}/rents/${rentId}`, {headers});
   }
 }

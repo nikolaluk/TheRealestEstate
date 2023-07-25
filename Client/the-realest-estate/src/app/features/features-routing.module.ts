@@ -6,6 +6,7 @@ import { RentComponent } from './rent/rent.component';
 import { AddComponent } from './add/add.component';
 import { BuyDetailsComponent } from './buy-details/buy-details.component';
 import { RentDetailsComponent } from './rent-details/rent-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
     //features

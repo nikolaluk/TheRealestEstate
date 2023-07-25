@@ -16,7 +16,7 @@ router.get('/', async (req,res) => {
 
 router.post('/', isAuth, async (req,res) => {
     try {
-        const estate = await estateManager.create(req.body['estateData']);
+        const estate = await estateManager.create(req.body);
 
         await userManager.addListingId(estate._id.toString(), estate.ownerId);
         

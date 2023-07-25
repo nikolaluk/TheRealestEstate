@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 exports.auth = (req,res,next) => {
-    const token = req.body['accessToken'];
+    const token = req.header('X-Authorization');
 
     if(token) {
         try{
