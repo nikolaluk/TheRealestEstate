@@ -1,5 +1,6 @@
 <app-header></app-header>
 <body style="overflow: hidden; margin: 0" class="bg-gray-100 pb-10 pt-10">
+    <app-loader *ngIf="loaderService.isLoading"></app-loader>
     <router-outlet></router-outlet>
 </body>
 <app-footer></app-footer>
