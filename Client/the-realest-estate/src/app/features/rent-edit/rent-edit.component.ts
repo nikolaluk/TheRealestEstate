@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from 'src/app/api.service';
+import { ApiService } from 'src/app/services/api.service';
 import { Rent } from 'src/app/types/Rent';
 
 @Component({
@@ -9,7 +9,8 @@ import { Rent } from 'src/app/types/Rent';
   templateUrl: './rent-edit.component.html',
   styleUrls: ['./rent-edit.component.css']
 })
-export class RentEditComponent {
+
+export class RentEditComponent implements OnInit{
   rent: Rent | undefined;
 
   constructor(
@@ -36,7 +37,7 @@ export class RentEditComponent {
       imageUrl: this.sellForm.get('imageUrl')?.value,
       description: this.sellForm.get('description')?.value,
       area: Number(this.sellForm.get('area')?.value),
-      price: Number(this.sellForm.get('price')?.value),
+      rent: Number(this.sellForm.get('rent')?.value),
       ownerId: localStorage.getItem('_id'),
     }
 

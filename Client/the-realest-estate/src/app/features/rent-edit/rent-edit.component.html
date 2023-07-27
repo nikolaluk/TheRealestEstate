@@ -62,8 +62,8 @@
                     <label for="rent" class="text-gray-600 block">Rent</label>
                     <input type="number" name="rent" formControlName="rent" class="form-input border border-gray-300 rounded-md p-2 w-full">
                     <!-- repeatPassword error handling -->
-                    <div *ngIf="sellForm.get('price')?.touched" class="text-red-500">
-                        <div *ngIf="sellForm.get('price')?.errors?.['required']">
+                    <div *ngIf="sellForm.get('rent')?.touched" class="text-red-500">
+                        <div *ngIf="sellForm.get('rent')?.errors?.['required']">
                             Rent is required!
                         </div>
                     </div>

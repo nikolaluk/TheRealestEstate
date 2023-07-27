@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Estate } from './types/Estate';
-import { Rent } from './types/Rent';
+import { Estate } from '../types/Estate';
+import { Rent } from '../types/Rent';
 
 @Injectable({
   providedIn: 'root'
