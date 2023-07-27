@@ -19,7 +19,7 @@ export class BuyEditComponent implements OnInit {
     private activeRoute: ActivatedRoute,
 
     private router: Router,
-  ) { }
+  ) {}
 
   sellForm = this.formBuilder.group({
     type: ['', [Validators.required]],

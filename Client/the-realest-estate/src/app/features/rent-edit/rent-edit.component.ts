@@ -45,7 +45,7 @@ export class RentEditComponent implements OnInit{
     this.router.navigate([`rent/${this.rent?._id}`]);
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.activeRoute.params.subscribe(
       (data) => {
         this.apiService.getOneRentout(data['rentId']).subscribe(
@@ -59,6 +59,9 @@ export class RentEditComponent implements OnInit{
               area: this.rent.area.toString(),
               rent: this.rent.rent.toString(),
             })
+          },
+          (err) => {
+            console.log(err);
           }
         )
       }

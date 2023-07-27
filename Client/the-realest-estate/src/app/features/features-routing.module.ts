@@ -8,6 +8,7 @@ import { BuyDetailsComponent } from './buy-details/buy-details.component';
 import { RentDetailsComponent } from './rent-details/rent-details.component';
 import { BuyEditComponent } from './buy-edit/buy-edit.component';
 import { RentEditComponent } from './rent-edit/rent-edit.component';
+import { AuthGuard } from '../services/auth.guard';
 
 const routes: Routes = [
     //features
@@ -19,7 +20,7 @@ const routes: Routes = [
             { path: '', component: BuyComponent },
             { path: ':buyId', children: [
                 {path: '', component: BuyDetailsComponent},
-                {path: 'edit', component: BuyEditComponent},
+                {path: 'edit', canActivate: [AuthGuard],component: BuyEditComponent},
             ] }
         ]
     },
@@ -30,12 +31,12 @@ const routes: Routes = [
             { path: '', component: RentComponent},
             { path: ':rentId', children: [
                 {path: '', component:RentDetailsComponent},
-                {path: 'edit', component: RentEditComponent},
+                {path: 'edit', canActivate: [AuthGuard],component: RentEditComponent},
             ] }
         ]
     },
 
-    { path: 'add', component: AddComponent },
+    { path: 'add', canActivate: [AuthGuard] , component: AddComponent },
 ];
 
 @NgModule({

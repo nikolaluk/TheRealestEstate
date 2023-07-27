@@ -8,7 +8,8 @@
           <ul class="flex space-x-4">
             <li><a routerLink="/buy" class="text-black hover:text-gray-300">Buy estates</a></li>
             <li><a routerLink="/rent" class="text-black hover:text-gray-300">Rent estates</a></li>
-            <li><a routerLink="/add" class="text-black hover:text-gray-300">Add listing</a></li>
+            
+            <li *ngIf="authService.isLoggedIn"><a routerLink="/add" class="text-black hover:text-gray-300">Add listing</a></li>
           </ul>
         </nav>
       </div>
