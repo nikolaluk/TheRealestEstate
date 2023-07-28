@@ -42,4 +42,5 @@ import { RentEditComponent } from './rent-edit/rent-edit.component';
     RentDetailsComponent,
   ]
 })
+
 export class FeaturesModule { }
