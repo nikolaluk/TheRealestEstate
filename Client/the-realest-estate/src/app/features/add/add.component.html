@@ -1,22 +1,26 @@
-<div class="estate-wrapper flex flex-wrap justify-center space-x-10">
-    <div class="sell-option bg-white rounded-lg shadow-lg p-8 ">
+<div class="estate-wrapper flex flex-wrap justify-center items-center space-x-10 h-screen">
+    <div class="sell-option bg-white rounded-lg shadow-lg p-8">
         <h4 class="text-2xl font-bold mb-4">Sell your estate</h4>
 
-        <img src="" alt="">
-
-        <a routerLink="/sell">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Sell
-            </button>
-        </a>
+        <div class="flex justify-center">
+            <a routerLink="/sell">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Sell
+                </button>
+            </a>
+        </div>
     </div>
     <div class="rent-option bg-white rounded-lg shadow-lg p-8">
-        <h4 class="text-2xl font-bold mb-4">Rent out your estate</h4>   
+        <h4 class="text-2xl font-bold mb-4">Rent out your estate</h4>
+        
+        <img src=""  class="estate-image">
 
-        <a routerLink="/rentout">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Rent out
-            </button>
-        </a>
+        <div class="flex justify-center">
+            <a routerLink="/rentout">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Rent out
+                </button>
+            </a>
+        </div>
     </div>
 </div>
