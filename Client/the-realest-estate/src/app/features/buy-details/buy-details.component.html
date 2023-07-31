@@ -8,20 +8,25 @@
             <h4 class="text-2xl font-bold">{{estate?.price}} EUR</h4>
             <span class="text-gray-500">({{pricePerSquare}} EUR/m2)</span>
         </div>
-        <img class="mb-4" src="{{estate?.imageUrl}}" alt="">
-        <span class="text-gray-700">{{estate?.description}}</span>
+
         <hr class="my-4">
-        <h5 class="text-lg font-bold">{{estate?.area}} square meters</h5>
+
+        <div class="flex flex-col justify-center text-center">
+            <img class="mb-4" src="{{estate?.imageUrl}}" alt="">
+            <span class="text-gray-700">{{estate?.description}}</span>
+            <h1 class="text-lg font-bold">{{estate?.area}} square meters</h1>
+        </div>
+
+        <hr class="my-4">
 
         <!-- For owner -->
-        <div *ngIf="isOwner">
+        <div class="flex justify-center space-x-4" *ngIf="isOwner">
             <button class="btn" routerLink="/buy/{{estate?._id}}/edit">Edit</button>
             <button class="btn" (click)="deleteEstate()">Delete</button>
         </div>
 
         <!-- For user -->
-        <div *ngIf="!isOwner">
-            <button class="btn">Buy</button>
+        <div class="flex justify-center space-x-4" *ngIf="!isOwner">
             <button class="btn">Contact</button>
         </div>
     </div>
