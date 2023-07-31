@@ -1,4 +1,7 @@
 <div class="container mx-auto">
+    <div *ngIf="noRents" class="flex justify-center items-center h-screen">
+        <h1 class="text-4xl">No estates for rent</h1>
+    </div>
     <div class="flex justify-center">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <div *ngFor="let rent of rents" class="bg-white rounded-lg shadow-lg">

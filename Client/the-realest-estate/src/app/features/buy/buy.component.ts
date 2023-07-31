@@ -10,6 +10,7 @@ import { Estate } from 'src/app/types/Estate';
 })
 export class BuyComponent implements OnInit {
   estates: Estate[] = [];
+  noEstates: boolean = false;
 
   constructor(private apiService: ApiService, private loaderService: LoaderService) { }
 
@@ -18,6 +19,9 @@ export class BuyComponent implements OnInit {
 
     this.apiService.getAllEstates().subscribe((data) => {
       this.estates = data;
+      if(!this.estates[0]){
+        this.noEstates = true;
+      }
       this.loaderService.hideLoader();
     });
   }
