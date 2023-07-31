@@ -12,6 +12,7 @@ import { RentDetailsComponent } from './rent-details/rent-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BuyEditComponent } from './buy-edit/buy-edit.component';
 import { RentEditComponent } from './rent-edit/rent-edit.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -32,6 +33,7 @@ import { RentEditComponent } from './rent-edit/rent-edit.component';
     ReactiveFormsModule,
     RouterModule,
     FeaturesRoutingModule,
+    SharedModule,
   ],
   exports: [
     HomeComponent,

@@ -13,6 +13,9 @@ export class RentDetailsComponent implements OnInit{
   rentPerSquare: string | undefined;
   isOwner: boolean | undefined;
 
+  showPopup: boolean = false;
+  ownerEmail: string | undefined;
+
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router:Router) {}
 
   deleteRent():void {
@@ -25,6 +28,14 @@ export class RentDetailsComponent implements OnInit{
           console.log(err);
         }
       );
+  }
+
+  openPopup(): void {
+    this.showPopup = true;
+  }
+
+  closePopup(): void {
+    this.showPopup = false;
   }
 
   ngOnInit(): void {    

@@ -13,6 +13,10 @@ export class BuyDetailsComponent implements OnInit {
   pricePerSquare: string | undefined;
   isOwner: boolean | undefined;
 
+  showPopup: boolean = false;
+  ownerEmail: string | undefined;
+  
+
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
 
   deleteEstate():void {
@@ -27,12 +31,22 @@ export class BuyDetailsComponent implements OnInit {
       );
   }
 
+  openPopup(): void {
+    this.showPopup = true;
+  }
+
+  closePopup(): void {
+    this.showPopup = false;
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.apiService.getOneEstate(params['buyId']).subscribe(data => {
         this.estate = data;
         this.pricePerSquare = (Number(this.estate?.price) / Number(this.estate?.area)).toFixed(2);
         this.isOwner = localStorage.getItem('_id') == this.estate.ownerId;
+
+        //TODO Add ownerEmail request
       })
     });
   }
