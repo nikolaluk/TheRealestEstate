@@ -25,6 +25,10 @@ const rentSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    ownerEmail: {
+        type: String,
+        required: true,
+    },
     ownerId: {
         type: String,
         required: true,

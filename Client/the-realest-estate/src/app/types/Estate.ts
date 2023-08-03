@@ -6,5 +6,6 @@ export interface Estate {
     area: number,
     description: string,
     price: number,
+    ownerEmail: string,
     ownerId: string,
 }

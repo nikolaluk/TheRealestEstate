@@ -14,7 +14,6 @@ export class RentDetailsComponent implements OnInit{
   isOwner: boolean | undefined;
 
   showPopup: boolean = false;
-  ownerEmail: string | undefined;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router:Router) {}
 

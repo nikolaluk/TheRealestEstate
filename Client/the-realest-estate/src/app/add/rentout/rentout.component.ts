@@ -36,6 +36,7 @@ export class RentoutComponent {
       description: this.rentOutForm.get('description')?.value,
       area: this.rentOutForm.get('area')?.value,
       rent: Number(this.rentOutForm.get('rent')?.value),
+      ownerEmail: localStorage.getItem('email'),
       ownerId: localStorage.getItem('_id'),
     }
 

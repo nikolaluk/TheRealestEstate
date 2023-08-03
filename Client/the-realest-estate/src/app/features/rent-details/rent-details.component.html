@@ -29,6 +29,6 @@
         <div class="flex justify-center space-x-4" *ngIf="!isOwner">
             <button class="btn" (click)="openPopup()">Contact</button>
         </div>
-        <app-contact-popup *ngIf="showPopup" [email]="ownerEmail" (close)="closePopup()"></app-contact-popup>
+        <app-contact-popup *ngIf="showPopup" [email]="rent?.ownerEmail" (close)="closePopup()"></app-contact-popup>
     </div>
 </div>

@@ -14,8 +14,6 @@ export class BuyDetailsComponent implements OnInit {
   isOwner: boolean | undefined;
 
   showPopup: boolean = false;
-  ownerEmail: string | undefined;
-  
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
 
@@ -45,8 +43,6 @@ export class BuyDetailsComponent implements OnInit {
         this.estate = data;
         this.pricePerSquare = (Number(this.estate?.price) / Number(this.estate?.area)).toFixed(2);
         this.isOwner = localStorage.getItem('_id') == this.estate.ownerId;
-
-        //TODO Add ownerEmail request
       })
     });
   }

@@ -35,6 +35,7 @@ export class SellComponent {
       description: this.sellForm.get('description')?.value,
       area: this.sellForm.get('area')?.value,
       price: Number(this.sellForm.get('price')?.value),
+      ownerEmail: localStorage.getItem('email'),
       ownerId: localStorage.getItem('_id'),
     }
 
