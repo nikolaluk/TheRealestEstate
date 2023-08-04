@@ -15,9 +15,9 @@ export class BuyDetailsComponent implements OnInit {
 
   showPopup: boolean = false;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
-  deleteEstate():void {
+  deleteEstate(): void {
     this.apiService.deleteEstate(this.estate?._id)
       .subscribe(
         (data) => {
@@ -35,6 +35,18 @@ export class BuyDetailsComponent implements OnInit {
 
   closePopup(): void {
     this.showPopup = false;
+  }
+
+  bookmark(): void {
+    this.apiService.addBookmark(this.estate?._id.toString())
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          console.log(err.error.message);
+        }
+      );
   }
 
   ngOnInit(): void {

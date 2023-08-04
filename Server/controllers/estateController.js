@@ -9,7 +9,9 @@ router.get('/', async (req, res) => {
 
         res.json(estates);
     } catch (err) {
-        console.log(err);
+        res.status(400).json({
+            message: err.message,
+        });
     }
 
 });

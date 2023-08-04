@@ -32,7 +32,20 @@ export class ApiService {
       'X-Authorization': accessToken || '',
     })
 
-    return this.http.get<any[]>(`${appUrl}/users/${userId}`, {headers});
+    return this.http.get<any>(`${appUrl}/users/${userId}`, {headers});
+  }
+
+  addBookmark(estateId: string | undefined) {    
+    const { appUrl } = environment;
+    const accessToken = localStorage.getItem('accessToken');
+    const userId = localStorage.getItem('_id');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Authorization': accessToken || '',
+    })
+    
+    return this.http.post<any>(`${appUrl}/users/${userId}`, {estateId}, {headers});
   }
 
   createEstate(estateData: any) {

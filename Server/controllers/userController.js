@@ -9,7 +9,6 @@ router.post('/register', async (req,res) => {
 
         res.json(result);
     } catch(err){
-        console.log(err);
         res.status(400).json({
             message: err.message,
         })
@@ -22,19 +21,33 @@ router.post('/login', async (req,res) => {
 
         res.json(result);
     } catch (err) {
-        console.log(err);
         res.status(400).json({
             message: err.message,
         })
     }
 });
 
+router.post('/:userId', isAuth, async(req,res) => {
+    try {
+        const userId = req.params.userId;
+        const estateId = req.body.estateId;
+        await userManager.addBookmarkId(estateId,userId);
+
+        res.status(200).end();
+    } catch (err) {
+        res.status(400).json({
+            message: err.message,
+        })
+    }
+})
+
 router.get('/:userId', isAuth, async (req,res) => {
     try {
-        const id = req.params.userId;
-        const listings = await userManager.returnListings(id);
+        const userId = req.params.userId;
+        const listings = await userManager.returnListings(userId);
+        const bookmarks = await userManager.returnBookmarks(userId);
 
-        res.json(listings);
+        res.json({listings,bookmarks});
     } catch (err) {
         res.status(400).json({
             message: err.message,

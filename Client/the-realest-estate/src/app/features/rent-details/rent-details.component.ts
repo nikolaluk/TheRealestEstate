@@ -37,6 +37,18 @@ export class RentDetailsComponent implements OnInit{
     this.showPopup = false;
   }
 
+  bookmark(): void {
+    this.apiService.addBookmark(this.rent?._id.toString())
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          console.log(err.error.message);
+        }
+      );
+  }
+
   ngOnInit(): void {    
     this.route.params.subscribe(params => {
       this.apiService.getOneRentout(params['rentId']).subscribe(data => {

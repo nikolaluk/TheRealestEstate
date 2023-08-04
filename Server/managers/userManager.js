@@ -39,9 +39,18 @@ exports.addListingId = async (estateId, userId) => {
     return User.findByIdAndUpdate(userId, {$push: { listings: estateId}});
 }
 
+exports.addBookmarkId = async (estateId, userId) => {
+    const user = await User.findById(userId);
+    if(user.bookmarks.includes(estateId)){
+        throw new Error('Duplicate bookmarks!');
+    }
+    return User.findByIdAndUpdate(userId, {$push: { bookmarks: estateId}});
+}
+
 exports.returnListings = async (userId) => {
     const user = await User.findById(userId);
     let listings = [];
+    let listingsIds = [];
 
     for(let id of user.listings) {
         const rent = await Rent.findById(id);
@@ -49,12 +58,39 @@ exports.returnListings = async (userId) => {
 
         if(rent) {
             listings.push(rent);
+            listingsIds.push(rent._id);
         } else if(estate) {
             listings.push(estate);
+            listingsIds.push(estate._id);
         }
     }
 
+    await User.findByIdAndUpdate(userId,{listings: listingsIds});
+
     return listings;
+}
+
+exports.returnBookmarks = async (userId) => {
+    const user = await User.findById(userId);
+    let bookmarks = [];
+    let bookmarksIds = [];
+
+    for(let id of user.bookmarks) {
+        const rent = await Rent.findById(id);
+        const estate = await Estate.findById(id);
+
+        if(rent) {
+            bookmarks.push(rent);
+            bookmarksIds.push(rent._id)
+        } else if(estate) {
+            bookmarks.push(estate);
+            bookmarksIds.push(estate._id)
+        }
+    }
+
+    await User.findByIdAndUpdate(userId,{bookmarks: bookmarksIds});
+
+    return bookmarks;
 }
 
 function getAuthResult(user) {

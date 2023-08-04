@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
         required:true,
     },
     listings: [{type: String}],
+    bookmarks: [{type: String}],
 });
 
 userSchema.pre('save', async function () {
