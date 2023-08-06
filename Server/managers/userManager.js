@@ -6,7 +6,7 @@ const Estate = require('../models/Estate');
 const Rent = require('../models/Rent');
 
 exports.register = async (userdata) => {
-    if(await User.findOne({email: userdata.email})){
+    if (await User.findOne({ email: userdata.email })) {
         throw new Error('Email is already a member!');
     }
 
@@ -36,15 +36,31 @@ exports.login = async ({ email, password }) => {
 }
 
 exports.addListingId = async (estateId, userId) => {
-    return User.findByIdAndUpdate(userId, {$push: { listings: estateId}});
+    return User.findByIdAndUpdate(userId, { $push: { listings: estateId } });
 }
 
 exports.addBookmarkId = async (estateId, userId) => {
     const user = await User.findById(userId);
-    if(user.bookmarks.includes(estateId)){
+    if (user.bookmarks.includes(estateId)) {
         throw new Error('Duplicate bookmarks!');
     }
-    return User.findByIdAndUpdate(userId, {$push: { bookmarks: estateId}});
+    return User.findByIdAndUpdate(userId, { $push: { bookmarks: estateId } });
+}
+
+exports.removeBookmark = async (estateId, userId) => {
+    const user = await User.findById(userId);
+    let bookmarks = user.bookmarks;
+
+    for (let i = 0; i < bookmarks.length; i++) {
+        if (bookmarks[i] == estateId) {
+            bookmarks.splice(i,1);
+            break;
+        }
+
+        throw new Error('No bookmark to remove!');
+    }
+
+    return User.findByIdAndUpdate(userId, {bookmarks});
 }
 
 exports.returnListings = async (userId) => {
@@ -52,20 +68,20 @@ exports.returnListings = async (userId) => {
     let listings = [];
     let listingsIds = [];
 
-    for(let id of user.listings) {
+    for (let id of user.listings) {
         const rent = await Rent.findById(id);
         const estate = await Estate.findById(id);
 
-        if(rent) {
+        if (rent) {
             listings.push(rent);
             listingsIds.push(rent._id);
-        } else if(estate) {
+        } else if (estate) {
             listings.push(estate);
             listingsIds.push(estate._id);
         }
     }
 
-    await User.findByIdAndUpdate(userId,{listings: listingsIds});
+    await User.findByIdAndUpdate(userId, { listings: listingsIds });
 
     return listings;
 }
@@ -75,20 +91,20 @@ exports.returnBookmarks = async (userId) => {
     let bookmarks = [];
     let bookmarksIds = [];
 
-    for(let id of user.bookmarks) {
+    for (let id of user.bookmarks) {
         const rent = await Rent.findById(id);
         const estate = await Estate.findById(id);
 
-        if(rent) {
+        if (rent) {
             bookmarks.push(rent);
             bookmarksIds.push(rent._id)
-        } else if(estate) {
+        } else if (estate) {
             bookmarks.push(estate);
             bookmarksIds.push(estate._id)
         }
     }
 
-    await User.findByIdAndUpdate(userId,{bookmarks: bookmarksIds});
+    await User.findByIdAndUpdate(userId, { bookmarks: bookmarksIds });
 
     return bookmarks;
 }
@@ -100,7 +116,7 @@ function getAuthResult(user) {
     }
 
     // synchronous variant
-    const token = jwt.sign(payload, 'SECRET', {expiresIn: '2d'});
+    const token = jwt.sign(payload, 'SECRET', { expiresIn: '2d' });
 
     const result = {
         _id: user._id,

@@ -41,6 +41,21 @@ router.post('/:userId', isAuth, async(req,res) => {
     }
 })
 
+router.put('/:userId', isAuth, async (req,res) => {
+    try {
+        const userId = req.params.userId;
+        const estateId = req.body.estateId;
+
+        await userManager.removeBookmark(estateId,userId);
+
+        res.status(200).end();
+    } catch (err) {
+        res.status(400).json({
+            message: err.message,
+        })
+    }
+})
+
 router.get('/:userId', isAuth, async (req,res) => {
     try {
         const userId = req.params.userId;

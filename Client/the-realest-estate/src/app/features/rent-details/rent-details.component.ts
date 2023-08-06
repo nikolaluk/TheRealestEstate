@@ -8,16 +8,17 @@ import { Rent } from 'src/app/types/Rent';
   templateUrl: './rent-details.component.html',
   styleUrls: ['./rent-details.component.css']
 })
-export class RentDetailsComponent implements OnInit{
+export class RentDetailsComponent implements OnInit {
   rent: Rent | undefined;
   rentPerSquare: string | undefined;
   isOwner: boolean | undefined;
 
+  bookmarked: boolean = false;
   showPopup: boolean = false;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private router:Router) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
-  deleteRent():void {
+  deleteRent(): void {
     this.apiService.deleteRent(this.rent?._id)
       .subscribe(
         (data) => {
@@ -40,8 +41,8 @@ export class RentDetailsComponent implements OnInit{
   bookmark(): void {
     this.apiService.addBookmark(this.rent?._id.toString())
       .subscribe(
-        (data) => {
-          console.log(data);
+        (data) => {          
+          this.bookmarked = true;
         },
         (err) => {
           console.log(err.error.message);
@@ -49,7 +50,20 @@ export class RentDetailsComponent implements OnInit{
       );
   }
 
-  ngOnInit(): void {    
+  unbookmark(): void {
+    this.apiService.removeBookmark(this.rent?._id.toString())
+      .subscribe(
+        (data) => {          
+          this.bookmarked = false;
+        },
+        (err) => {
+          console.log(err.error.message);
+        }
+      );
+
+  }
+
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.apiService.getOneRentout(params['rentId']).subscribe(data => {
         this.rent = data;
@@ -57,5 +71,19 @@ export class RentDetailsComponent implements OnInit{
         this.isOwner = localStorage.getItem('_id') == this.rent.ownerId;
       })
     })
+
+    this.apiService.getProfileListings(localStorage.getItem('_id'))
+      .subscribe(
+        (data) => {  
+          for(let bookmark of data.bookmarks) {
+            if(bookmark._id == this.rent?._id) {
+              this.bookmarked = true;
+            }
+          }
+        },
+        (err) => {
+          console.log(err.error.message);
+        },
+      )
   }
 }

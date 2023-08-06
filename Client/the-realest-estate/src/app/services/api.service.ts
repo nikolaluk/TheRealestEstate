@@ -48,6 +48,19 @@ export class ApiService {
     return this.http.post<any>(`${appUrl}/users/${userId}`, {estateId}, {headers});
   }
 
+  removeBookmark(estateId: string | undefined) {
+    const { appUrl } = environment;
+    const accessToken = localStorage.getItem('accessToken');
+    const userId = localStorage.getItem('_id');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Authorization': accessToken || '',
+    })
+
+    return this.http.put<any>(`${appUrl}/users/${userId}`, {estateId}, {headers});
+  }
+
   createEstate(estateData: any) {
     const { appUrl } = environment;
     const accessToken = localStorage.getItem('accessToken');
