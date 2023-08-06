@@ -28,7 +28,9 @@
         <!-- For user -->
         <div class="flex justify-center space-x-4" *ngIf="!isOwner">
             <button class="btn" (click)="openPopup()">Contact</button>
-            <button class="btn" (click)="bookmark()">Bookmark</button>
+
+            <button *ngIf="!bookmarked" class="btn" (click)="bookmark()">Bookmark</button>
+            <button *ngIf="bookmarked" class="btn" (click)="unbookmark()">Unbookmark</button>
         </div>
         <app-contact-popup *ngIf="showPopup" [email]="estate?.ownerEmail" (close)="closePopup()"></app-contact-popup>
     </div>

@@ -52,15 +52,14 @@ exports.removeBookmark = async (estateId, userId) => {
     let bookmarks = user.bookmarks;
 
     for (let i = 0; i < bookmarks.length; i++) {
+        console.log(bookmarks[i]);
         if (bookmarks[i] == estateId) {
             bookmarks.splice(i,1);
-            break;
+            return User.findByIdAndUpdate(userId, {bookmarks});
         }
-
-        throw new Error('No bookmark to remove!');
     }
 
-    return User.findByIdAndUpdate(userId, {bookmarks});
+    throw new Error('No bookmark to remove!');
 }
 
 exports.returnListings = async (userId) => {

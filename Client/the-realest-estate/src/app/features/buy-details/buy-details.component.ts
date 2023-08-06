@@ -13,6 +13,7 @@ export class BuyDetailsComponent implements OnInit {
   pricePerSquare: string | undefined;
   isOwner: boolean | undefined;
 
+  bookmarked: boolean = false;
   showPopup: boolean = false;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
@@ -41,12 +42,25 @@ export class BuyDetailsComponent implements OnInit {
     this.apiService.addBookmark(this.estate?._id.toString())
       .subscribe(
         (data) => {
-          console.log(data);
+          this.bookmarked = true;
         },
         (err) => {
           console.log(err.error.message);
         }
       );
+  }
+
+  unbookmark(): void {
+    this.apiService.removeBookmark(this.estate?._id.toString())
+      .subscribe(
+        (data) => {          
+          this.bookmarked = false;
+        },
+        (err) => {
+          console.log(err.error.message);
+        }
+      );
+
   }
 
   ngOnInit(): void {
@@ -57,5 +71,21 @@ export class BuyDetailsComponent implements OnInit {
         this.isOwner = localStorage.getItem('_id') == this.estate.ownerId;
       })
     });
+
+    this.apiService.getProfileListings(localStorage.getItem('_id'))
+      .subscribe(
+        (data) => {  
+          for(let bookmark of data.bookmarks) {
+            if(bookmark._id == this.estate?._id) {
+              this.bookmarked = true;
+              console.log(this.bookmarked);
+              
+            }
+          }
+        },
+        (err) => {
+          console.log(err.error.message);
+        },
+      )
   }
 }
