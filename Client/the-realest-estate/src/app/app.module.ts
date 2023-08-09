@@ -8,6 +8,8 @@ import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';
 import { UsersModule } from './users/users.module';
 import { AddModule } from './add/add.module';
+import { BuyModule } from './buy/buy.module';
+import { RentModule } from './rent/rent.module';
 
 @NgModule({
   declarations: [
@@ -15,13 +17,16 @@ import { AddModule } from './add/add.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
-    FeaturesModule,
+
     UsersModule,
     AddModule,
+    BuyModule,
+    RentModule,
+    FeaturesModule,
 
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
