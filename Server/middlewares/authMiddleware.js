@@ -23,7 +23,7 @@ exports.auth = (req,res,next) => {
 exports.isAuth = (req, res, next) => {
     if(!req.user){
         res.status(400).json({
-            message: 'Forbiden',
+            message: 'Forbiden!',
         });
         return;
     }

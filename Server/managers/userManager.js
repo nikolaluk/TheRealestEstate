@@ -52,7 +52,6 @@ exports.removeBookmark = async (estateId, userId) => {
     let bookmarks = user.bookmarks;
 
     for (let i = 0; i < bookmarks.length; i++) {
-        console.log(bookmarks[i]);
         if (bookmarks[i] == estateId) {
             bookmarks.splice(i,1);
             return User.findByIdAndUpdate(userId, {bookmarks});
