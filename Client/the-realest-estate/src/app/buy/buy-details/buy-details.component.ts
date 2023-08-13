@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Estate } from 'src/app/types/Estate';
 
 @Component({
@@ -16,7 +17,7 @@ export class BuyDetailsComponent implements OnInit {
   bookmarked: boolean = false;
   showPopup: boolean = false;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, public authService: AuthService) { }
 
   deleteEstate(): void {
     this.apiService.deleteEstate(this.estate?._id)

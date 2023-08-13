@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Rent } from 'src/app/types/Rent';
 
 @Component({
@@ -11,12 +12,13 @@ import { Rent } from 'src/app/types/Rent';
 export class RentDetailsComponent implements OnInit {
   rent: Rent | undefined;
   rentPerSquare: string | undefined;
+
   isOwner: boolean | undefined;
 
   bookmarked: boolean = false;
   showPopup: boolean = false;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, public authService: AuthService) { }
 
   deleteRent(): void {
     this.apiService.deleteRent(this.rent?._id)
